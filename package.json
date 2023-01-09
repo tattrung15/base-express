@@ -2,13 +2,17 @@
   "name": "base-express",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "./build/app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "prebuild": "rimraf ./build",
     "build": "tsc",
     "start": "node -r module-alias/register ./build/app.js",
-    "dev": "nodemon"
+    "dev": "nodemon",
+    "typeorm": "typeorm-ts-node-commonjs",
+    "migration:generate": "typeorm migration:create",
+    "migration:run": "typeorm migration:run",
+    "migration:revert": "typeorm migration:revert"
   },
   "author": "",
   "license": "ISC",
@@ -42,5 +46,8 @@
     "ts-node": "^10.9.1",
     "tsconfig-paths": "^4.1.2",
     "typescript": "^4.9.4"
+  },
+  "_moduleAliases": {
+    "@": "build"
   }
 }

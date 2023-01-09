@@ -7,7 +7,11 @@ export class User extends BaseEntity {
   @PrimaryGeneratedColumn({ type: "integer", name: "id" })
   id: number;
 
-  @Column("character varying", { name: "username", nullable: false })
+  @Column("character varying", {
+    name: "username",
+    nullable: false,
+    unique: true,
+  })
   username: string;
 
   @Column("character varying", { name: "password", nullable: false })

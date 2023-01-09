@@ -8,4 +8,5 @@ export const dataSource = new DataSource({
   password: Config.DB_PASSWORD,
   database: Config.DB_NAME,
   entities: [__dirname + "/entities/*.{js,ts}"],
+  migrations: [__dirname + "/migrations/*{.ts,.js}"],
 });

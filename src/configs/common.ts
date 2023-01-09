@@ -11,5 +11,3 @@ export const Config = {
   DB_PASSWORD: process.env.DB_PASSWORD,
   JWT_SECRET_KEY: process.env.JWT_SECRET_KEY,
 };
-
-console.log(Config);
