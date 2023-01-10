@@ -1,5 +1,5 @@
 import { User } from "@/entities/user";
-import { dataSource } from "@/app.init";
+import { dataSource } from "@/database.init";
 import { FindManyOptions } from "typeorm";
 import { LIMIT_PER_PAGE } from "@/constants/common.const";
 import { Pagination } from "@/models";
