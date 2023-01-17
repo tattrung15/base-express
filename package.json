@@ -7,11 +7,12 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "prebuild": "rimraf ./build",
     "build": "tsc --project tsconfig.json && tsc-alias -p tsconfig.json",
-    "start": "npm run build && node -r module-alias/register ./build/app.js",
+    "prestart": "npm run build",
+    "start": "node -r module-alias/register ./build/app.js",
     "dev": "nodemon",
-    "migration:generate": "typeorm-ts-node-commonjs migration:create",
-    "migration:run": "npm run build && typeorm-ts-node-commonjs migration:run -d",
-    "migration:revert": "npm run build && typeorm-ts-node-commonjs migration:revert -d"
+    "migration:generate": "ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js migration:create",
+    "migration:run": "ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js migration:run -d",
+    "migration:revert": "ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js migration:revert -d"
   },
   "author": "",
   "license": "ISC",
