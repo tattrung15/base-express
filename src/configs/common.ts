@@ -4,6 +4,7 @@ dotenv.config();
 
 export const Config = {
   APP_PORT: Number(process.env.APP_PORT),
+  APP_HOST: String(process.env.APP_HOST),
   DB_HOST: process.env.DB_HOST,
   DB_PORT: Number(process.env.DB_PORT),
   DB_NAME: process.env.DB_NAME,

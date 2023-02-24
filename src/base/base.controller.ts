@@ -1,16 +1,16 @@
-import autoBind from "auto-bind";
+import BaseClass from "./base.class";
 import { Request, Response } from "express";
 import { ManagedError } from "../models/error.model";
 import { Pagination, ResponsePayload } from "../models/response.model";
 
-class BaseController {
+class BaseController extends BaseClass {
   protected defaultSuccessMsg = "Request success.";
   protected defaultFailMsg = "Request fails.";
   protected name: string;
 
   constructor(name: string) {
+    super();
     this.name = name;
-    autoBind(this);
   }
 
   protected success<T>(req: Request, res: Response) {

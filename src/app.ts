@@ -7,6 +7,8 @@ import { AppError, ManagedError } from "./models";
 import { handleAppError, handleError } from "./middlewares/error.middleware";
 import { Config } from "./configs/common";
 import { dataSource } from "./database.init";
+import { Server } from "socket.io";
+import sockets from "./socket/index.socket";
 
 const app = express();
 
@@ -44,10 +46,39 @@ setImmediate(async () => {
     LogHelper.logError("First start failed to connect to DB", errorMsg);
   }
 
-  app.listen(Config.APP_PORT, () => {
+  const server = app.listen(Config.APP_PORT, () => {
     LogHelper.logInfo(
       "App listening on",
       `http://localhost:${Config.APP_PORT}`,
     );
+  });
+
+  const io = new Server(server, {
+    cors: {
+      origin: "*",
+      methods: "*",
+    },
+  });
+
+  io.on("connection", (socket) => {
+    LogHelper.logInfo("SOCKET", "Socket connect", socket.id);
+    for (let i = 0; i < sockets.length; i++) {
+      const s = sockets[i];
+      socket.on(s.event, (data) => s.handler(socket, data));
+      socket.on("disconnect", () => {
+        LogHelper.logInfo("SOCKET", "Socket disconnect", socket.id);
+        socket.removeAllListeners();
+      });
+    }
+  });
+
+  process.on("SIGTERM", () => {
+    LogHelper.logInfo("SIGTERM signal received: closing HTTP server");
+    io.close(() => {
+      LogHelper.logInfo("SOCKET", "Shutdown socket server");
+    });
+    server.close(() => {
+      LogHelper.logInfo("HTTP server closed");
+    });
   });
 });

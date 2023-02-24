@@ -1,14 +1,14 @@
-import autoBind from "auto-bind";
+import BaseClass from "./base.class";
 import axios, { AxiosError, AxiosRequestConfig } from "axios";
 import { AppError } from "../models/error.model";
 import { BaseHttpResponse } from "./base.type";
 
-class BaseHttpService<T> {
+class BaseHttpService<T> extends BaseClass {
   protected baseURL = "";
 
   constructor(baseURL = "") {
+    super();
     this.baseURL = baseURL;
-    autoBind(this);
   }
 
   public async post(
