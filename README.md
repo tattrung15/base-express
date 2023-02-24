@@ -1,7 +1,7 @@
 # Create a new migration
 
 ```bash
-npm run migration:generate src/migrations/<migration name>
+npm run migration:generate <migration name>
 ```
 
 # Run migrations
