@@ -6,9 +6,9 @@ import LogHelper from "./helpers/log.helper";
 import { AppError, ManagedError } from "./models";
 import { handleAppError, handleError } from "./middlewares/error.middleware";
 import { Config } from "./configs/common";
-import { dataSource } from "./database.init";
 import { Server } from "socket.io";
 import sockets from "./socket/index.socket";
+import { initPostgresConnection } from "./app.init";
 
 const app = express();
 
@@ -34,7 +34,7 @@ app.use(
 
 setImmediate(async () => {
   try {
-    await dataSource.initialize();
+    await initPostgresConnection();
     LogHelper.logInfo("Database connected");
   } catch (dbConnectError) {
     let errorMsg = "";

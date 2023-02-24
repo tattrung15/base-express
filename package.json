@@ -11,8 +11,10 @@
     "start": "node -r module-alias/register ./build/app.js",
     "dev": "nodemon",
     "migration:generate": "ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js migration:create",
-    "migration:run": "ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js migration:run -d",
-    "migration:revert": "ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js migration:revert -d"
+    "migration:run": "ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js migration:run",
+    "migration:revert": "ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js migration:revert",
+    "seed:config": "ts-node -r tsconfig-paths/register ./node_modules/typeorm-seeding/dist/cli.js config",
+    "seed:run": "ts-node -r tsconfig-paths/register ./node_modules/typeorm-seeding/dist/cli.js seed"
   },
   "author": "",
   "license": "ISC",
@@ -30,7 +32,8 @@
     "reflect-metadata": "^0.1.13",
     "socket.io": "^4.6.1",
     "socket.io-client": "^4.6.1",
-    "typeorm": "^0.3.11",
+    "typeorm": "^0.2.44",
+    "typeorm-seeding": "^1.6.1",
     "winston": "^3.8.2",
     "winston-daily-rotate-file": "^4.7.1"
   },

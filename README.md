@@ -7,13 +7,19 @@ npm run migration:generate src/migrations/<migration name>
 # Run migrations
 
 ```bash
-npm run migration:run ./src/database.init.ts
+npm run migration:run
 ```
 
 # Revert migration
 
 ```bash
-npm run migration:revert ./src/database.init.ts
+npm run migration:revert
 ```
 
 This command will execute down in the latest executed migration
+
+# Run seeders
+
+```bash
+npm run seed:run
+```
